@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from reservationservice.app.resources import ReservationManager
+from reservationservice.app.managers.reservation import ReservationManager
 from reservationservice.app.schemas import ReservationShema
 
 class ReservationController(object):
@@ -20,7 +20,6 @@ class ReservationController(object):
         self.schema_one = ReservationShema(many=False, only=reservation_fields)
         self.schema_many = ReservationShema(many=True, only=reservation_fields)
 
-    @classmethod
     def get_reservation(self, reservation_id):
         """
         Get reservation by id
@@ -31,7 +30,6 @@ class ReservationController(object):
         reservation = self.manager.get({'id': reservation_id})
         return self.schema_one.dump(reservation).data
 
-    @classmethod
     def select_reservation(self, data):
         """
         Get reservation by id
@@ -42,8 +40,7 @@ class ReservationController(object):
         reservations = self.manager.select(data)
         return self.schema_many.dump(reservations).data
 
-    @classmethod
-    def create(self, data):
+    def create_reservation(self, data):
         """
         create reservation item
         :param data: Dictionary with the data to create. Ie {'user_id': 34, 'event_id': 45}

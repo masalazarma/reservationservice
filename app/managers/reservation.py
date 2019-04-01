@@ -18,7 +18,6 @@ class ReservationManager(object):
         self.auto_commit = auto_commit
         self.db_session = db.session
 
-    @classmethod
     def get(self, filters):
         """
         Get first reservation match with filters
@@ -37,7 +36,6 @@ class ReservationManager(object):
             print error_message
             return None
 
-    @classmethod
     def create(self, data):
         """
         create reservation item
@@ -65,7 +63,6 @@ class ReservationManager(object):
             print error_message
             return None
 
-    @classmethod
     def select(self, filters):
         """
         Get all reservation match with filters

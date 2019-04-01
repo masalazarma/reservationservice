@@ -4,17 +4,18 @@
 from flask import jsonify
 from flask_restful import Resource, reqparse
 
-
+from reservationservice.app.controllers.reservation import ReservationController
 
 class ReservationAPI(Resource):
 
     def get(self):
         """
-
+        Get all reservetions by filters
         """
         params = self.get_params()
+        reservations = ReservationController().select_reservation(params)
 
-        return jsonify({})
+        return jsonify({'data': reservations})
 
     def get_params(self):
         """
@@ -29,10 +30,10 @@ class ReservationAPI(Resource):
 
     def post(self):
         """
-
+        Create reservation
         """
         params = self.post_params()
-
+        reservations = ReservationController().create_reservation(params)
         return jsonify({})
 
     def post_params(self):
