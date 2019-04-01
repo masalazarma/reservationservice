@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from reservationservice.app.models import Reservation
+from reservationservice.app import db
 
 class ReservationManager(object):
     """
