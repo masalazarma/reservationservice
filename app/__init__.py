@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'This is a microservice for reservations created by Diego Leon, Jehiel Sanchez, Milton Espinel and MateoSalazar'
+    return 'This is a microservice for reservations created by Diego Leon, Jehiel Sanchez, Milton Espinel and Mateo Salazar'
 
 app.config.from_object('reservationservice.default_config')
 
