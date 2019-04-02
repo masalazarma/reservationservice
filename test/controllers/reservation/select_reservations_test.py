@@ -87,3 +87,20 @@ class SelectReservationTest(BaseTest):
             self.assertEqual(len(response), 1)
             self.assertEqual(response[0]['event_id'], 17)
             self.assertEqual(response[0]['user_id'], 36)
+
+    def test_dont_get_reservations_successful(self):
+        """
+        Check if none reservations returned successfully
+        """
+
+        with nested(*self.build_patches({})):
+            ReservationFactory.create(user_id=10, event_id=15)
+            ReservationFactory.create(user_id=10, event_id=16)
+            ReservationFactory.create(user_id=10, event_id=17)
+            ReservationFactory.create(user_id=12, event_id=17)
+            ReservationFactory.create(user_id=21, event_id=15)
+            ReservationFactory.create(user_id=36, event_id=17)
+
+            response = ReservationController().select_reservation({'user_id':56})
+
+            self.assertEqual(len(response), 0)
